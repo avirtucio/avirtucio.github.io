@@ -1,0 +1,202 @@
+<html>
+
+<head>
+  <title>Thermometer Lab</title>
+</head>
+
+<body>
+  <h1>Thermometer Lab</h1>
+  <div>
+    <svg version="1.1" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" height="50%" width="75%">
+      <style>
+        #glass {
+          fill: #ffffff;
+          stroke: #cccccc;
+          stroke-width: 3;
+        }
+
+        #container {
+          fill: #ffffff;
+          stroke: #000000;
+          stroke-width: 5;
+        }
+
+        .shine_freezing {
+          fill: #02abff;
+          stroke: #e9e2e2;
+          stroke-width: 3;
+        }
+
+        .shine_warm {
+          fill: #ff8d02;
+          stroke: #e9e2e2;
+          stroke-width: 3;
+        }
+
+        .shine_hot {
+          fill: #ff0202;
+          stroke: #e9e2e2;
+          stroke-width: 3;
+        }
+
+        .freezing {
+          fill: #02abff;
+          stroke: #02abff;
+          stroke-width: 1;
+        }
+
+        .warm {
+          fill: #ff8d02;
+          stroke: #ff8d02;
+          stroke-width: 1;
+        }
+
+        .hot {
+          fill: #ff0202;
+          stroke: #ff0202;
+          stroke-width: 1;
+        }
+
+        .tickMarksShow {
+          visibility: visible;
+          fill: black
+        }
+
+        .tickMarksHide {
+          visibility: hidden;
+          fill: rgb(255, 255, 255)
+        }
+      </style>
+
+      <rect id="container" x="10" y="10" width="150" height="210" rx="15" />
+
+      <g id="glass">
+        <rect x="45" y="20" width="30" height="160" rx="15" />
+        <ellipse cx="60" cy="180" rx="30" ry="30" />
+        <rect x="46.5" y="22" width="27" height="165" rx="15" stroke="none" />
+      </g>
+
+      <g id="liquid" class="warm">
+        <rect id="liquidColumn" x="50" y="95" width="20" height="70" rx="10" />
+        <ellipse cx="60" cy="180" rx="25" ry="25" />
+        <!-- <rect x="46.5" y="22" width="27" height="165" rx="15" stroke="none" /> -->
+      </g>
+
+      <g id="shine" class="shine_warm">
+        <path d=" M 65 200 A 20 20 80 0 1 47 167" />
+      </g>
+
+      <!-- celsius tick marks start-->
+      <g id="tick_marks_celsius" class="tickMarksHide">
+        <rect x="85" y="25" width="10" height="3" rx="0" />
+        <text id="top_tick_C" x="100" y="30" text>100°C</text>
+
+        <rect x="85" y="38.89" width="10" height="3" rx="0" />
+
+        <rect x="85" y="52.78" width="10" height="3" rx="0" />
+        <text id="second_tick_C" x="100" y="58.78" text>73.8°C</text>
+
+        <rect x="85" y="66.67" width="10" height="3" rx="0" />
+
+        <rect x="85" y="80.56" width="10" height="3" rx="0" />
+        <text id="third_tick_C" x="100" y="85.56" text>47.6°C</text>
+
+        <rect x="85" y="94.44" width="10" height="3" rx="0" />
+        <text id="fourth_tick_C" x="100" y="101.44" text>35.5°C</text>
+
+        <rect x="85" y="108.33" width="10" height="3" rx="0" />
+
+        <rect x="85" y="122.22" width="10" height="3" rx="0" />
+        <text id="fifth_tick_C" x="100" y="129.22" text>8.2°C</text>
+
+        <rect x="85" y="136.11" width="10" height="3" rx="0" />
+
+        <rect x="85" y="150" width="10" height="3" rx="0" />
+        <text id="bottom_tick_C" x="100" y="160" text>-18°C</text>
+      </g>
+      <!-- celsius tick marks end-->
+
+      <!-- fahrenheit tick marks start -->
+      <g id="tick_marks_fahrenheit" class="tickMarksShow">
+        <rect x="85" y="25" width="10" height="3" rx="0" />
+        <text id="top_tick_F" x="100" y="30" text>212°F</text>
+
+        <rect x="85" y="38.89" width="10" height="3" rx="0" />
+
+        <rect x="85" y="52.78" width="10" height="3" rx="0" />
+        <text id="second_tick_F" x="100" y="58.78" text>164.8°F</text>
+
+        <rect x="85" y="66.67" width="10" height="3" rx="0" />
+
+        <rect x="85" y="80.56" width="10" height="3" rx="0" />
+        <text id="third_tick_F" x="100" y="85.56" text>117.7°F</text>
+
+        <rect x="85" y="94.44" width="10" height="3" rx="0" />
+        <text id="fourth_tick_F" x="100" y="101.44" text>95.9°F</text>
+
+        <rect x="85" y="108.33" width="10" height="3" rx="0" />
+
+        <rect x="85" y="122.22" width="10" height="3" rx="0" />
+        <text id="fifth_tick_F" x="100" y="129.22" text>46.8°F</text>
+
+        <rect x="85" y="136.11" width="10" height="3" rx="0" />
+
+        <rect x="85" y="150" width="10" height="3" rx="0" />
+        <text id="bottom_tick_F" x="100" y="160" text>0°F</text>
+      </g>
+      <!-- fahrenheit tick marks end-->
+
+    </svg>
+  </div>
+
+  <div> <!-- slider start -->
+    <input type="range" min="0" max="118" class="slider" id="temperatureSlider" onchange="changeTempData()">
+  </div> <!-- slider end -->
+
+  <div> <!-- radio buttons start -->
+    <input type="radio" id="FahrenheitButton" name="Temperature" value="Fahrenheit" onchange="changeToFahrenheit()">
+    <label for="Fahrenheit">Fahrenheit</label><br>
+
+    <input type="radio" id="CelsiusButton" name="Temperature" value="Celsius" onchange="changeToCelsius()">
+    <label for="Celsius">Celsius</label>
+  </div> <!-- radio buttons end -->
+
+<script> //js code start
+   function changeTempData(){
+     let temp = document.getElementById("temperatureSlider").value;
+
+     let thermometerHeight = (temp/118)*140
+     console.log(thermometerHeight)
+     document.getElementById("liquidColumn").setAttribute("height", thermometerHeight)
+     document.getElementById("liquidColumn").setAttribute("y", 25+(140-thermometerHeight))
+
+     if (thermometerHeight > 100){
+      document.getElementById("liquid").setAttribute("class", "hot")
+      document.getElementById("shine").setAttribute("class", "shine_hot")
+      
+     } else if (thermometerHeight > 31) {
+      document.getElementById("liquid").setAttribute("class", "warm")
+      document.getElementById("shine").setAttribute("class", "shine_warm")
+      
+     } else {
+      document.getElementById("liquid").setAttribute("class", "freezing")
+      document.getElementById("shine").setAttribute("class", "shine_freezing")
+     }
+      
+   }
+
+   function changeToFahrenheit(){
+      document.getElementById("tick_marks_fahrenheit").setAttribute("class", "tickMarksShow")
+      document.getElementById("tick_marks_celsius").setAttribute("class", "tickMarksHide")
+   }
+
+   function changeToCelsius(){
+     document.getElementById("tick_marks_fahrenheit").setAttribute("class", "tickMarksHide")
+     document.getElementById("tick_marks_celsius").setAttribute("class", "tickMarksShow")
+   }
+
+
+</script> <!-- js code end -->
+</body>
+
+</html>
